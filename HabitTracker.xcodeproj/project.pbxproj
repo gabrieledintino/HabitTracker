@@ -13,6 +13,7 @@
 		E0B0616D241FF34900FBB124 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0B0616C241FF34900FBB124 /* Assets.xcassets */; };
 		E0B06170241FF34900FBB124 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0B0616F241FF34900FBB124 /* Preview Assets.xcassets */; };
 		E0B06173241FF34900FBB124 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0B06171241FF34900FBB124 /* LaunchScreen.storyboard */; };
+		E0B0617B241FFC9E00FBB124 /* StructAndClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B0617A241FFC9E00FBB124 /* StructAndClasses.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E0B0616F241FF34900FBB124 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E0B06172241FF34900FBB124 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E0B06174241FF34900FBB124 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0B0617A241FFC9E00FBB124 /* StructAndClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructAndClasses.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				E0B06166241FF34200FBB124 /* AppDelegate.swift */,
 				E0B06168241FF34200FBB124 /* SceneDelegate.swift */,
 				E0B0616A241FF34200FBB124 /* ContentView.swift */,
+				E0B0617A241FFC9E00FBB124 /* StructAndClasses.swift */,
 				E0B0616C241FF34900FBB124 /* Assets.xcassets */,
 				E0B06171241FF34900FBB124 /* LaunchScreen.storyboard */,
 				E0B06174241FF34900FBB124 /* Info.plist */,
@@ -149,6 +152,7 @@
 				E0B06167241FF34200FBB124 /* AppDelegate.swift in Sources */,
 				E0B06169241FF34200FBB124 /* SceneDelegate.swift in Sources */,
 				E0B0616B241FF34200FBB124 /* ContentView.swift in Sources */,
+				E0B0617B241FFC9E00FBB124 /* StructAndClasses.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
