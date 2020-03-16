@@ -9,8 +9,37 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var trackedObjects = Tracked()
+    @State private var showingAddItemView = false
+    
     var body: some View {
-        Text("Prova Git")
+        NavigationView {
+            List {
+                ForEach(trackedObjects.items) { object in
+                    HStack {
+                        VStack {
+                            Text(object.name)
+                                .font(.headline)
+                            Text(object.description)
+                        }
+                        Spacer()
+                        Text("Completed \(object.count) times")
+                    }
+                }
+            }
+        .navigationBarTitle("Test")
+        .navigationBarItems(trailing:
+            HStack(spacing: 15) {
+                EditButton()
+                Button(action: {
+                    self.showingAddItemView = true
+                }) {
+                    Image(systemName: "plus")
+                }
+            }
+        )
+            
+        }
     }
 }
 
