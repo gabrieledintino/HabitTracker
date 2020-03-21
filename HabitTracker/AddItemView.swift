@@ -9,13 +9,30 @@
 import SwiftUI
 
 struct AddItemView: View {
+    @ObservedObject var trackedObjects: Tracked
+    @State private var title = ""
+    @State private var description = ""
+    @Environment(\.presentationMode) var presentationMode
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            Form {
+                TextField("Nome dell'attività", text: $title)
+                TextField("Descrizione dell'attività", text: $description)
+            }
+            .navigationBarTitle("Aggiungi un'attività")
+            .navigationBarItems(trailing: Button("Salva") {
+                let item = TrackedItem(name: self.title, description: self.description, count: 0)
+                self.trackedObjects.items.append(item)
+                self.presentationMode.wrappedValue.dismiss()
+                })
+        }
     }
 }
 
 struct AddItemView_Previews: PreviewProvider {
     static var previews: some View {
-        AddItemView()
+        AddItemView(trackedObjects: Tracked())
     }
 }

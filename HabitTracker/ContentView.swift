@@ -8,6 +8,18 @@
 
 import SwiftUI
 
+struct Tile: View {
+    var body: some View {
+        ZStack {
+            Rectangle()
+                .frame(width: 200, height: 100)
+                LinearGradient(gradient: Gradient(colors: [.yellow, .red]), startPoint: .top, endPoint: .bottom)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+            Text("Hello")
+        }
+    }
+}
+
 struct ContentView: View {
     @ObservedObject var trackedObjects = Tracked()
     @State private var showingAddItemView = false
@@ -16,15 +28,19 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(trackedObjects.items) { object in
-                    HStack {
-                        VStack {
-                            Text(object.name)
-                                .font(.headline)
-                            Text(object.description)
+                    NavigationLink(destination: DetailView(itemDetail: object)) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(object.name)
+                                    .font(.headline)
+                                Text(object.description)
+                            }
+                            .frame(maxWidth: 200, maxHeight: 100)
+                            Spacer()
+                            Text("Completed \(object.count) times")
                         }
-                        Spacer()
-                        Text("Completed \(object.count) times")
                     }
+//                    Tile()
                 }
             }
         .navigationBarTitle("Test")
@@ -36,8 +52,10 @@ struct ContentView: View {
                 }) {
                     Image(systemName: "plus")
                 }
-            }
-        )
+            })
+        .sheet(isPresented: $showingAddItemView) {
+            AddItemView(trackedObjects: self.trackedObjects)
+        }
             
         }
     }
