@@ -27,17 +27,17 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(trackedObjects.items) { object in
-                    NavigationLink(destination: DetailView(itemDetail: object)) {
+                ForEach(trackedObjects.items.indices, id: \.self) { index in
+                    NavigationLink(destination: DetailView(index: index).environmentObject(self.trackedObjects)) {
                         HStack {
                             VStack(alignment: .leading) {
-                                Text(object.name)
+                                Text(self.trackedObjects.items[index].name)
                                     .font(.headline)
-                                Text(object.description)
+                                Text(self.trackedObjects.items[index].description)
                             }
                             .frame(maxWidth: 200, maxHeight: 100)
                             Spacer()
-                            Text("Completed \(object.count) times")
+                            Text("Completed \(self.trackedObjects.items[index].count) times")
                         }
                     }
 //                    Tile()

@@ -9,19 +9,20 @@
 import SwiftUI
 
 struct DetailView: View {
-    @State var itemDetail: TrackedItem
+    @EnvironmentObject var trackedObjects: Tracked
+    var index: Int
     
     var body: some View {
         ScrollView(.vertical) {
             VStack {
-                Text(itemDetail.name)
+                Text(self.trackedObjects.items[self.index].name)
                     .font(.title)
                     .fontWeight(.bold)
-                Text(itemDetail.description)
-                Text("Numero di ripetizioni: \(itemDetail.count)")
-                Spacer(minLength: 40)                
+                Text(self.trackedObjects.items[self.index].description)
+                Text("Numero di ripetizioni: \(self.trackedObjects.items[index].count)")
+                Spacer(minLength: 40)
                 Button("Incrementa ripetizioni") {
-                    self.itemDetail.count += 1
+                    self.trackedObjects.items[self.index].count += 1
                 }
             }
         }
@@ -30,6 +31,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(itemDetail: TrackedItem(name: "Titolo", description: "Descrizione", count: 5))
+        DetailView(index: 0)
     }
 }
