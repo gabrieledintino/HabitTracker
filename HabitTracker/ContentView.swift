@@ -9,13 +9,27 @@
 import SwiftUI
 
 struct Tile: View {
+    var item: TrackedItem
+    
     var body: some View {
         ZStack {
             Rectangle()
-                .frame(width: 200, height: 100)
+                .frame(width: 200, height: 75)
                 LinearGradient(gradient: Gradient(colors: [.yellow, .red]), startPoint: .top, endPoint: .bottom)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-            Text("Hello")
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("\(item.name)")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    Text("\(item.description)")
+                        .foregroundColor(.white)
+                }
+                .frame(maxWidth: 200, maxHeight: 100)
+                Spacer()
+                Text("Completed \(item.count) times")
+                    .foregroundColor(.white)
+            }
         }
     }
 }
@@ -29,19 +43,20 @@ struct ContentView: View {
             List {
                 ForEach(trackedObjects.items.indices, id: \.self) { index in
                     NavigationLink(destination: DetailView(index: index).environmentObject(self.trackedObjects)) {
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text(self.trackedObjects.items[index].name)
-                                    .font(.headline)
-                                Text(self.trackedObjects.items[index].description)
-                            }
-                            .frame(maxWidth: 200, maxHeight: 100)
-                            Spacer()
-                            Text("Completed \(self.trackedObjects.items[index].count) times")
-                        }
+//                        HStack {
+//                            VStack(alignment: .leading) {
+//                                Text(self.trackedObjects.items[index].name)
+//                                    .font(.headline)
+//                                Text(self.trackedObjects.items[index].description)
+//                            }
+//                            .frame(maxWidth: 200, maxHeight: 100)
+//                            Spacer()
+//                            Text("Completed \(self.trackedObjects.items[index].count) times")
+//                        }
+                        Tile(item: self.trackedObjects.items[index])
                     }
-//                    Tile()
                 }
+                .onDelete(perform: removeItems)
             }
         .navigationBarTitle("Test")
         .navigationBarItems(trailing:
@@ -58,6 +73,10 @@ struct ContentView: View {
         }
             
         }
+    }
+    
+    func removeItems(at offsets: IndexSet) {
+        trackedObjects.items.remove(atOffsets: offsets)
     }
 }
 
